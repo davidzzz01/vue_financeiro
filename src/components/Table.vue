@@ -68,10 +68,14 @@
         </tr>
         </tbody>
     </table>
+
+
 </template>
 
 <script>
+
 export default {
+
     name: 'Table',
     props: {
         deleteRegistro: {

@@ -49,19 +49,17 @@ export default {
   },
   name: 'Home',
   methods: {
-    async showRegistros() {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/despesas');
-        this.registros = response.data.registros
-        this.indicadores = response.data.card;
-        this.categorias = response.data.categorias;
-
-
-      }
-      catch (error) {
-        console.log(error)
-      }
-    },
+      showRegistros() {
+          axios.get('http://127.0.0.1:8000/api/despesas')
+              .then(response => {
+                  this.registros = response.data.registros;
+                  this.indicadores = response.data.card;
+                  this.categorias = response.data.categorias;
+              })
+              .catch(error => {
+                  console.log(error);
+              });
+      },
     async deleteRegistro(id) {
       try {
         const del = await axios.delete(`http://127.0.0.1:8000/api/despesa/${id}`);
@@ -106,9 +104,9 @@ export default {
     fecharModal() {
       this.isModalOpen = false;
     }
-    
 
-    
+
+
 
   },
   mounted() {
