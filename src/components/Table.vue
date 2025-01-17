@@ -55,14 +55,25 @@
             <td style="text-align: center">{{ registro.data_br }}</td>
             <td class="valor">{{ registro.valor_br }}</td>
             <td style="width:90px" class="d-flex justify-content-center align-items-center">
-                <div class="d-flex">
-                    <button class="btn btn-info d-flex align-items-center justify-content-center" @click="$emit('editarRegistro', registro)">
-                        <i class="fa-solid fa-pencil"></i>
-                    </button>
-                    <button class="btn btn-danger d-flex align-items-center justify-content-center ml-2" @click="deleteRegistro(registro.id)">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+
+<!--                   <button class="btn btn-info d-flex align-items-center justify-content-center" @click="$emit('editarRegistro', registro)">-->
+<!--                        <i class="fa-solid fa-pencil"></i>-->
+<!--                    </button>-->
+<!--                    <button class="btn btn-danger d-flex align-items-center justify-content-center ml-2" @click="deleteRegistro(registro.id)">-->
+<!--                        <i class="fa-solid fa-trash"></i>-->
+<!--                    </button>-->
+                <div class="menu-container">
+                    <button class="menu-btn" @click="toggleMenu(registro.id)">⋮</button>
+                    <div class="menu-options" v-if="menuOpen === registro.id">
+                        <a @click="deleteRegistro(registro.id)" style="color:red">
+                            <i class="fa-solid fa-trash"></i> Excluir
+                        </a>
+                        <a @click="$emit('editarRegistro', registro)" style="color:#2dabd1">
+                            <i class="fa-solid fa-pencil"></i> Editar
+                        </a>
+                    </div>
                 </div>
+
 
             </td>
         </tr>
@@ -90,9 +101,16 @@ export default {
     data() {
         return {
             tipoFiltro: '',
+            menuOpen:null
 
         };
     },
+    methods:{
+        toggleMenu(id) {
+            this.menuOpen = this.menuOpen === id ? null : id;
+        }
+    },
+
     computed: {
 
         registrosFiltrados() {
@@ -106,27 +124,12 @@ export default {
 </script>
 
 <style scoped>
-.btn-info{
-    color:#0dcaf0;
-    width: 35px;
-    height: 35px;
-    align-content: center;
-    align-items: center;
-    margin-top: 5px;
-}
-.btn-danger {
 
-    width: 35px;
-    height: 35px;
-    align-content: center;
-    align-items: center;
-    margin-top: 5px;
-    margin-left: 3px;
-}
+
 
 .fa-trash {
-
-    font-size: 18px;
+    color: red;
+    font-size: 13px;
     margin-right: auto;
 }
 
@@ -140,11 +143,51 @@ td {
 }
 
 .fa-pencil {
-    color: white;
-    font-size: 18px;
+    font-size: 13px;
+    color: #2dabd1;
+
 }
 
 .bg-success {
     text-align: center;
 }
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+.menu-options {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    width: 150px;
+    z-index: 1000;
+}
+
+.menu-options a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.menu-options a:hover {
+    background-color: #f0f0f0;
+}
+
+
 </style>
