@@ -17,7 +17,7 @@
             <select  class="form-select" aria-label="Filtrar por categoria">
                 <option selected>Filtre por tipo</option>
                 <option value="registros.tipo" v-for="item in registros" :key="item.id"></option>
-               
+
             </select>
         </div>
 </template>

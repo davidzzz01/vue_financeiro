@@ -10,7 +10,7 @@
     </div>
 
     <div class="d-flex align-items-center mb-3">
-      <Filter :registros="registros" />
+
     </div>
 
     <Table :registros="registros" :deleteRegistro="deleteRegistro"  @editarRegistro="abrirModal"/>
