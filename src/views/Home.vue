@@ -61,6 +61,7 @@ export default {
               });
       },
     async deleteRegistro(id) {
+
       try {
         const del = await axios.delete(`http://127.0.0.1:8000/api/despesa/${id}`);
         console.log('registro excluido com sucesso', del)

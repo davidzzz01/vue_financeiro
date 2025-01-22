@@ -56,16 +56,11 @@
             <td class="valor">{{ registro.valor_br }}</td>
             <td style="width:90px" class="d-flex justify-content-center align-items-center">
 
-<!--                   <button class="btn btn-info d-flex align-items-center justify-content-center" @click="$emit('editarRegistro', registro)">-->
-<!--                        <i class="fa-solid fa-pencil"></i>-->
-<!--                    </button>-->
-<!--                    <button class="btn btn-danger d-flex align-items-center justify-content-center ml-2" @click="deleteRegistro(registro.id)">-->
-<!--                        <i class="fa-solid fa-trash"></i>-->
-<!--                    </button>-->
                 <div class="menu-container">
                     <button class="menu-btn" @click="toggleMenu(registro.id)">⋮</button>
+
                     <div class="menu-options" v-if="menuOpen === registro.id">
-                        <a @click="deleteRegistro(registro.id)" style="color:red">
+                        <a @click="deleteRegistro(registro.id)"  style="color:red">
                             <i class="fa-solid fa-trash"></i> Excluir
                         </a>
                         <a @click="$emit('editarRegistro', registro)" style="color:#2dabd1">
@@ -124,6 +119,7 @@ export default {
 </script>
 
 <style scoped>
+
 
 
 
